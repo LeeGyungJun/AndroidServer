@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                     item.updatedate = cursor.getString(5)
                     itemList!!.add(item)
                 }
-                        db.close();
+            db.close();
             Log.e("데이터 출력", itemList.toString())
             itemAdapter!!.notifyDataSetChanged()
             downloadview!!.visibility = View.GONE
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         override fun run() {
             try {
                 //다운로드 받을 주소 생성
-                var url: URL = URL("http://172.30.34.114:8080/item/list")
+                var url: URL = URL("http://172.30.1.47:8080/item/list")
                 //연결 객체 생성
                 val con = url!!.openConnection() as HttpURLConnection
                 //옵션 설정
@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
             //업데이트 된 시간을 가져오기
             try {
                 //다운로드 받을 주소 생성
-                var url: URL = URL("http://172.30.34.114:8080/item/updatetime")
+                var url: URL = URL("http://172.30.1.47:8080/item/updatetime")
                 //연결 객체 생성
                 val con = url!!.openConnection() as HttpURLConnection
                 //옵션 설정
@@ -209,7 +209,9 @@ class MainActivity : AppCompatActivity() {
             val fis = openFileInput("updatetime.txt")
             val data = ByteArray(fis.available())
             while (fis.read(data) != -1) {
-                Log.e("시작", "로컬 파일 읽기")
+                val test = fis.read(data) != -1
+                Log.e("test", test.toString())
+                Log.e("시작", "로컬 파일 읽기11")
             }
             localUpdatetime = String(data)
             Log.e("로컬 업데이트 시간", localUpdatetime.toString())
@@ -217,7 +219,7 @@ class MainActivity : AppCompatActivity() {
             val fisCount = openFileInput("count.txt")
             val dataCount = ByteArray(fisCount.available())
             while (fis.read(dataCount) != -1) {
-                Log.e("시작", "로컬 파일 읽기")
+                Log.e("시작", "로컬 파일 읽기22")
             }
             count = String(dataCount).toInt()
             fisCount.close()

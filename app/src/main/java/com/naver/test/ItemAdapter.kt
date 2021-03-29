@@ -73,7 +73,7 @@ class ItemAdapter(
         var imagename:String? = null
         var imageview:ImageView? = null
         override fun run(){
-            val inuptStream = URL("http://172.30.34.114:8080/images/${imagename}").openStream()
+            val inuptStream = URL("http://172.30.1.47:8080/images/${imagename}").openStream()
             val bit = BitmapFactory.decodeStream(inuptStream)
             inuptStream.close()
             val message = Message()
